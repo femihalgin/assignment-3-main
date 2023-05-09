@@ -1,0 +1,14 @@
+# CREATED BY TERRAFORM DO NOT MODIFY THE OUTPUT
+[apiservers]
+194.47.178.180 ansible_user=ubuntu
+#cscloud8-182.lnu.se
+[webservers]
+194.47.178.164 ansible_user=ubuntu
+
+[all:vars]
+user_service=194.47.178.180:8082
+content_service=194.47.178.180:8081
+ansible_user=ubuntu
+ansible_ssh_private_key_file: ~/.ssh/tk222vz_key_ssh.pem
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q ubuntu@194.47.178.166 -o IdentityFile=/Users/tharuk/Downloads/tk222vz_key_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"'

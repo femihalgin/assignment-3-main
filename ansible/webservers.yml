@@ -1,0 +1,59 @@
+---
+# NGINX install
+- name: "Install Nginx"
+  hosts: webservers
+  become: true
+  tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      notify:
+        - start nginx
+    - name: configure nginx
+      copy: src={{ item }} dest=/etc/nginx/sites-available/
+      with_fileglob:
+        - nginx/*
+      notify:
+        - restart nginx
+
+    - name: Remove deafult index.html
+      file:
+        path: /usr/share/nginx/html/index.html
+        state: absent
+    - name:  Copy the build directory
+      copy:
+        src: ./files/build/
+        dest: /usr/share/nginx/html/
+        remote_src: false
+        directory_mode: true
+      tags:
+        - parentdir
+      notify:
+      - restart nginx
+
+    - name: Update userservice url
+      become: true
+      replace:
+        dest: /usr/share/nginx/html/config/config.json
+        regexp: 'http://localhost:8082/'
+        replace: "{{ user_service }}"
+        backup: yes
+#        validate: '/usr/sbin/sshd -t'
+
+    - name: Update content service url
+      become: true
+      replace:
+        dest: /usr/share/nginx/html/config/config.json
+        regexp: 'http://localhost:8081/'
+        replace: "{{ content_service }}"
+        backup: yes
+#        validate: '/usr/sbin/sshd -t'
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
+    - name: restart nginx
+      service: name=nginx state=restarted
+

@@ -1,0 +1,4 @@
+---
+- hosts: web
+  vars:
+    project_path: /var/www/nodejs

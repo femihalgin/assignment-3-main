@@ -1,0 +1,36 @@
+.home_pg{
+    background-color:cornflowerblue;
+    align-content: center;
+    align-items: center;
+    color:darkblue;  
+}
+
+#head_styl{
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    
+}
+
+#email_styl{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+#text_styl{
+    align-self: center;
+    width: 200px;
+   
+}
+
+#bt_style{
+    background-color: blueviolet;
+}
+
+.align_styl{
+    text-align: center;
+}
+
+.bt_styl{
+    background-color:aqua
+}

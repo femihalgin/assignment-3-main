@@ -1,0 +1,5 @@
+[web]
+194.47.178.196 ansible_user=ubuntu
+
+[backend]
+194.47.178.164 ansible_user=ubuntu
